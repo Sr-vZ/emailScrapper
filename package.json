@@ -1,0 +1,19 @@
+{
+  "name": "email-scrapper",
+  "version": "1.0.0",
+  "description": "a nodejs scrapper for email collectionr",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sr-vZ/emailScrapper.git"
+  },
+  "author": "SrvZ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sr-vZ/emailScrapper/issues"
+  },
+  "homepage": "https://github.com/Sr-vZ/emailScrapper#readme"
+}
