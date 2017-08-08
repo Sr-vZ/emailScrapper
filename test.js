@@ -1,42 +1,51 @@
-var crawler = require('crawler');
- 
+var Crawler = require('crawler');
+var fs =require('fs');
+
+linkList = [];
+
 var c = new Crawler({
-    rateLimit: 2000,
-    maxConnections: 1,
+    rateLimit: 2500,
+    maxConnections: 2,
     callback: function(error, res, done) {
         if(error) {
             console.log(error)
         } else {
             var $ = res.$;
             console.log($('title').text())
+            links = $('a');
+            $(links).each(function(i, link){
+                console.log($(link).text() + ':\n  ' + $(link).attr('href'))
+                linkList.push($(link).attr('href'))
+                fs.appendFile('links.txt',$(link).attr('href') +'\n',function(err){
+                if(err){
+                    console.log(err)
+                }
+                console.log('link saved!')
+            })
+            });
+            
         }
         done();
     }
 })
- 
-// if you want to crawl some website with 2000ms gap between requests 
-c.queue('http://www.somewebsite.com/page/1')
-// c.queue('http://www.somewebsite.com/page/2')
-// c.queue('http://www.somewebsite.com/page/3')
- 
-// if you want to crawl some website using proxy with 2000ms gap between requests for each proxy 
+
+
+proxy = 'http://proxy.intra.bt.com:8080';
+
+linkList.push('http://www.medium.com/')
+i=0;
+// if you want to crawl some website with 2000ms gap between requests
+ c.queue({
+    uri:'http://www.medium.com/',
+    proxy: proxy
+}/* ,function(){
+    c.queue({uri:linkList[i++],proxy:proxy})
+} */)
+
+
+
 /* c.queue({
-    uri:'http://www.somewebsite.com/page/1',
-    limiter:'proxy_1',
-    proxy:'proxy_1'
+    uri:linkList[0],
+    proxy: proxy
 })
-c.queue({
-    uri:'http://www.somewebsite.com/page/2',
-    limiter:'proxy_2',
-    proxy:'proxy_2'
-})
-c.queue({
-    uri:'http://www.somewebsite.com/page/3',
-    limiter:'proxy_3',
-    proxy:'proxy_3'
-})
-c.queue({
-    uri:'http://www.somewebsite.com/page/4',
-    limiter:'proxy_1',
-    proxy:'proxy_1'
-}) */
+ */
