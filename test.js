@@ -38,9 +38,9 @@ i=0;
  c.queue({
     uri:'http://www.medium.com/',
     proxy: proxy
-}/* ,function(){
+} ,function(){
     c.queue({uri:linkList[i++],proxy:proxy})
-} */)
+} )
 
 
 
