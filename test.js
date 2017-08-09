@@ -20,7 +20,7 @@ var c = new Crawler({
                 if(err){
                     console.log(err)
                 }
-                console.log('link saved!')
+                //console.log('link saved!')
             })
             });
             
