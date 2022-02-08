@@ -30,7 +30,7 @@ var c = new Crawler({
 })
 
 
-proxy = 'http://proxy.intra.bt.com:8080';
+proxy = '';
 
 linkList.push('http://www.medium.com/')
 i=0;
